@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:CN_CHKBONO_RP.V1="http://xmlns.oracle.com/Enterprise/Tools/schemas/CN_BONOAS_PKG.CN_CHKBONO_RP.V1" xmlns:CN_SENDBONO_RP.V1="http://xmlns.oracle.com/Enterprise/Tools/schemas/CN_BONOAS_PKG.CN_SENDBONO_RP.V1" xmlns:CN_SENDBONO_RQ.V1="http://xmlns.oracle.com/Enterprise/Tools/schemas/CN_BONOAS_PKG.CN_SENDBONO_RQ.V1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <grammars>
+    <include href="CN_CHKBONO_RP.V1.xsd"/>
+    <include href="CN_SENDBONO_RQ.V1.xsd"/>
+    <include href="CN_SENDBONO_RP.V1.xsd"/>
+  </grammars>
+  <resources base="http://g100603svtrm.cencosud.corp:1080/PSIGW/RESTListeningConnector/">
+    <resource>
+      <method href="#CN_BONOCHK.v1"/>
+    </resource>
+    <resource>
+      <method href="#CN_BONOSEND.v1"/>
+    </resource>
+  </resources>
+  <method id="CN_BONOCHK.v1" name="GET">
+    <doc xml:lang="ESP">Obtención Bonos Disponibles</doc>
+    <request>
+      <resource path="getBonos?rut={emplid}">
+        <param name="emplid" required="true" style="template" type="xsd:string"/>
+      </resource>
+    </request>
+    <response Status="200">
+      <representation element="response" id="CN_CHKBONO_RP.V1.xsd" mediaType="application/json"/>
+    </response>
+  </method>
+  <method id="CN_BONOSEND.v1" name="POST">
+    <request>
+      <resource path="/"/>
+      <representation element="request" id="CN_SENDBONO_RQ.V1.xsd" mediaType="application/json"/>
+    </request>
+    <response Status="200">
+      <representation element="response" id="CN_SENDBONO_RP.V1.xsd" mediaType="application/json"/>
+    </response>
+  </method>
+</application>
